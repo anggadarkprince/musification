@@ -1,0 +1,16 @@
+{
+    "name": "angga/musification",
+    "description": "Your music online library",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Angga Ari Wijaya",
+            "email": "anggadarkprince@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"App\\": "app/"}
+    },
+    "require": {}
+}
