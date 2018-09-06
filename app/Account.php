@@ -66,12 +66,18 @@ class Account extends Database
 
     /**
      * Remove authentication data.
+     * @param bool $force
+     * @return bool
      */
-    public function logout()
+    public function logout($force = true)
     {
         $session = new Session();
         $session->removeData('auth.id');
         $session->removeData('auth.is_logged_in');
+        if ($force) {
+            return session_destroy();
+        }
+        return true;
     }
 
     /**

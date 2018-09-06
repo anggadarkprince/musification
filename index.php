@@ -7,6 +7,9 @@
 	<title>Welcome to Musification!</title>
     <meta name="description" content="Modern music streaming">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="assets/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
