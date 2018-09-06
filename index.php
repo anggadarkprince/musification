@@ -12,6 +12,8 @@
 <body>
 	Hello!
     <?php include_once '_alert.php' ?>
+
+<?= \App\Account::getLoginData('first_name') ?>
 </body>
 
 </html>

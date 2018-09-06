@@ -16,6 +16,7 @@ class Validator
         'email' => 'The %s is not valid email',
         'url' => 'The %s is not valid url',
         'username' => 'The %s is not valid username',
+        'unique' => 'The %s must be unique',
         'confirm' => 'The %s is not match with field %s',
         'regex' => 'The %s is not match with required pattern',
     ];
@@ -31,6 +32,9 @@ class Validator
      */
     public function validate($rules, $data = [], $redirectBack = true, $fallbackUrl = 'index.php')
     {
+        $session = new Session();
+        $session->clearFlashData(Session::KEY_VALIDATION_FLASH);
+        
         if (empty($data)) {
             $data = $_POST;
         }
@@ -64,11 +68,10 @@ class Validator
 
         if (!empty($this->errors)) {
             if ($redirectBack) {
-                $session = new Session();
-                $session->clearFlashData(Session::KEY_VALIDATION_FLASH);
                 foreach ($this->errors as $field => $message) {
                     $session->setFlashData($field, $message, Session::KEY_VALIDATION_FLASH);
                 }
+                $session->setOldData($data);
                 header('Location:' . (empty($_SERVER['HTTP_REFERER']) ? $fallbackUrl : $_SERVER['HTTP_REFERER']));
                 exit;
             }
@@ -167,6 +170,31 @@ class Validator
     public function username($value)
     {
         return $this->regex($value, '/^[a-zA-Z0-9-_.]+$/');
+    }
+
+    /**
+     * Check if the value is unique.
+     *
+     * @param $value
+     * @param $tableField
+     * @return bool
+     */
+    public function unique($value, $tableField)
+    {
+        $params = explode('.', $tableField);
+        $table = $params[0];
+        $field = $params[1];
+
+        $db = new Database();
+        $statement = $db->getConnection()->prepare("SELECT id FROM {$table} WHERE {$field} = ?");
+        $statement->bind_param('s', $value);
+        $statement->execute();
+        $result = $statement->get_result();
+        $statement->close();
+        if (mysqli_num_rows($result) > 0) {
+            return false;
+        }
+        return true;
     }
 
     /**

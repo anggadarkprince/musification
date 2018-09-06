@@ -107,7 +107,9 @@ class Session
         $flashData = $default;
         if (isset($_SESSION[$flashKey][$key])) {
             $flashData = $_SESSION[$flashKey][$key];
-            unset($_SESSION[$flashKey][$key]);
+            if($flashKey == self::KEY_APP_FLASH) {
+                unset($_SESSION[$flashKey][$key]);
+            }
         }
 
         return $flashData;

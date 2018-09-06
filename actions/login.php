@@ -1,24 +1,28 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../support/helper.php';
 
-use App\Account;
-
-$authentication = new Account();
+$account = new \App\Account();
+$validator = new \App\Validator();
 
 if (isset($_POST['login'])) {
-    $username = htmlentities($_POST['username']);
-    $password = $_POST['password'];
-    $authentication->login($_POST['username'], $_POST['password']);
-} elseif (isset($_POST['register'])) {
-    $username = ucfirst(strtolower($_POST['first_name']));
-    $username = ucfirst(strtolower($_POST['last_name']));
-    $username = str_replace(' ', '-', $_POST['username']);
-    $username = htmlentities($_POST['email']);
-    $password = $_POST['password'];
-    $password = $_POST['confirm_password'];
+    $validator->validate([
+        'login_username' => 'required',
+        'login_password' => 'required',
+    ]);
+
+    $username = get_input('login_username');
+    $password = get_input('login_password');
+
+    if($account->login($username, $password)) {
+        flash('success', 'You are logged in!');
+        redirect('../index.php');
+    } else {
+        flash('warning', 'User or password is wrong');
+        redirect('_back');
+    }
 }
 
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
+flash('danger', 'Something is getting wrong');
+redirect('_back');

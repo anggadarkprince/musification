@@ -2,7 +2,10 @@
 
 namespace App;
 
-
+/**
+ * Class Database
+ * @package App
+ */
 class Database
 {
     public static $db;
@@ -10,7 +13,7 @@ class Database
     /**
      * @return \mysqli
      */
-    public function getConnection(){
+    public static function getConnection(){
         if(is_null(self::$db)) {
             self::$db = mysqli_connect('localhost', 'root', '', 'musification');
             if(mysqli_connect_errno()) {
