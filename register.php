@@ -103,7 +103,7 @@
             </div>
 
             <div class="copyright">
-                <p>&copy Copyright <?= date('Y') ?> all right reserved.</p>
+                <p>&copy Copyright <?= date('Y') ?> <strong>Angga Ari Wijaya</strong> all right reserved.</p>
                 <ul>
                     <li><a href="terms.php">Terms</a></li>
                     <li><a href="privacy.php">Privacy</a></li>

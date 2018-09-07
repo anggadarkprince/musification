@@ -15,6 +15,16 @@ p {
     line-height: 1.4;
 }
 
+strong {
+    font-weight: 600;
+}
+
+a {
+    -webkit-transition: all 0.20s ease-in-out;
+    -moz-transition: all 0.20s ease-in-out;
+    -o-transition: all 0.20s ease-in-out;
+}
+
 a:hover {
     color: #f4469a;
     text-decoration: none;
@@ -92,9 +102,9 @@ h1, h2, h3, h4, h5, h6 {
     height: 36px;
     line-height: 27px;
     width: 100%;
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
+    -webkit-transition: all 0.20s ease-in-out;
+    -moz-transition: all 0.20s ease-in-out;
+    -o-transition: all 0.20s ease-in-out;
 }
 
 #form-container input:focus,
@@ -111,6 +121,14 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px 20px;
     margin: 30px auto 15px;
     width: 100%;
+    -webkit-transition: all 0.20s ease-in-out;
+    -moz-transition: all 0.20s ease-in-out;
+    -o-transition: all 0.20s ease-in-out;
+}
+
+#form-container button:hover {
+    color: #f4469a;
+    border-color: #f4469a;
 }
 
 #form-container button:hover {
