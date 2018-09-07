@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,600');
 
 * {
     padding: 0;
@@ -7,11 +7,11 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 p {
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.4;
 }
 
@@ -31,7 +31,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 400;
+    font-weight: 600;
     line-height: 1.2;
 }
 
@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 label {
-    font-weight: 400;
+    font-weight: 600;
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
