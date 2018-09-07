@@ -1,4 +1,4 @@
-<?php require '_header.php' ?>
+<?php require 'support/initiator.php' ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,7 +16,8 @@
 	Hello!
     <?php include_once '_alert.php' ?>
 
-<?= \App\Account::getLoginData('first_name') ?>
+    <?= \App\Account::getLoginData('name') ?>
 </body>
 
 </html>
+<?php require 'support/cleaner.php' ?>

@@ -34,6 +34,7 @@ class Validator
     {
         $session = new Session();
         $session->clearFlashData(Session::KEY_VALIDATION_FLASH);
+        $session->clearOldData();
         
         if (empty($data)) {
             $data = $_POST;

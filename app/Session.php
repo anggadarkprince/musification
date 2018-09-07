@@ -154,7 +154,6 @@ class Session
         $oldData = $default;
         if (isset($_SESSION['app_old'][$key])) {
             $oldData = $_SESSION['app_old'][$key];
-            unset($_SESSION['app_old'][$key]);
         }
 
         return $oldData;

@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
         flash('success', 'You are logged in!');
         redirect('../index.php');
     } else {
-        flash('warning', 'User or password is wrong');
+        flash('warning', 'Username or password is wrong');
         redirect('_back');
     }
 }

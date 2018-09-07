@@ -1,15 +1,21 @@
 <?php
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 /**
  * Redirect to specific url.
  *
  * @param $path
- * @param int $code
+ * @param bool $withInput
  * @param string $fallbackUrl
  */
-function redirect($path, $code = 200, $fallbackUrl = '../index.php')
+function redirect($path, $withInput = true, $fallbackUrl = '../index.php')
 {
     if (empty($path) || $path == '_back') {
+        if (!empty($_POST) && $withInput) {
+            $session = new App\Session();
+            $session->setOldData($_POST);
+        }
         $backUrl = empty($_SERVER['HTTP_REFERER']) ? $fallbackUrl : $_SERVER['HTTP_REFERER'];
         header('Location:' . $backUrl);
     } else {
@@ -26,8 +32,6 @@ function redirect($path, $code = 200, $fallbackUrl = '../index.php')
  */
 function flash($type, $message)
 {
-    require_once __DIR__ . '/../vendor/autoload.php';
-
     $session = new App\Session();
     $session->setFlashData('type', $type);
     $session->setFlashData('message', $message);
@@ -42,10 +46,8 @@ function flash($type, $message)
  * @param bool $firstErrorOnly
  * @return string
  */
-function validation_error($field, $prefix = '<p>', $suffix = '</p>', $firstErrorOnly = true)
+function validation_error($field, $prefix = '<p class="input-text-error">', $suffix = '</p>', $firstErrorOnly = true)
 {
-    require_once __DIR__ . '/../vendor/autoload.php';
-
     $session = new App\Session();
     $errors = $session->getFlashData($field, '', App\Session::KEY_VALIDATION_FLASH);
 
@@ -58,7 +60,7 @@ function validation_error($field, $prefix = '<p>', $suffix = '</p>', $firstError
                 break;
             }
         }
-    } else {
+    } elseif (!empty($errors)) {
         $messages = ($prefix . $errors . $suffix);
     }
 
@@ -74,8 +76,6 @@ function validation_error($field, $prefix = '<p>', $suffix = '</p>', $firstError
  */
 function get_old($field, $default = '')
 {
-    require_once __DIR__ . '/../vendor/autoload.php';
-
     $session = new App\Session();
 
     return $session->getOldData($field, $default);

@@ -42,8 +42,11 @@ class Account extends Database
      */
     public function login($username, $password)
     {
+        $validator = new Validator();
+        $field = $validator->email($username) ? 'email' : 'username';
+
         $isLoggedIn = false;
-        $query = "SELECT * FROM users WHERE username = ?";
+        $query = "SELECT * FROM users WHERE {$field} = ?";
         $statement = $this->getConnection()->prepare($query);
         $statement->bind_param('s', $username);
         $statement->execute();
@@ -83,19 +86,18 @@ class Account extends Database
     /**
      * Registering our user data.
      *
-     * @param $firstName
-     * @param $lastName
+     * @param $name
      * @param $username
      * @param $email
      * @param $password
      * @param string $avatar
      * @return bool
      */
-    public function register($firstName, $lastName, $username, $email, $password, $avatar = '')
+    public function register($name, $username, $email, $password, $avatar = '')
     {
-        $query = "INSERT INTO users (first_name, last_name, username, email, password, avatar) VALUES (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO users (name, username, email, password, avatar) VALUES (?, ?, ?, ?, ?)";
         $statement = $this->getConnection()->prepare($query);
-        $statement->bind_param('ssssss', $firstName, $lastName, $username, $email, $password, $avatar);
+        $statement->bind_param('sssss', $name, $username, $email, $password, $avatar);
         $result = $statement->execute();
         $statement->close();
 
