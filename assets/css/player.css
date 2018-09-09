@@ -1,5 +1,8 @@
 .player {
     color: #ffffff;
+    background-color: #1c1c1c;
+    font-size: 14px;
+    min-height: 100vh;
 }
 
 .playing-bar {
@@ -132,6 +135,13 @@
     width: 100%;
 }
 
+.playlist-container {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+    height: calc(100vh - 93px);
+    overflow-y: auto;
+}
+
 .navigation-container {
     background: #151515;
     width: 220px;
@@ -153,7 +163,7 @@
 
 .navigation-bar a:hover,
 .navigation-bar .nav-item-link.search-link:hover {
-    color: #ffffff;
+    color: #f4469a;
 }
 
 .navigation-bar .logo {
@@ -176,7 +186,7 @@
 .navigation-bar .nav-title {
     font-size: 12px;
     letter-spacing: 2px;
-    color: #a0a0a0;
+    color: #f4469a;
     padding: 5px 8px;
     margin-bottom: 5px;
 }
@@ -185,12 +195,54 @@
     color: #808080;
     display: block;
 }
+
 .navigation-bar .nav-item-link.search-link img {
     width: 18px;
     float: right;
     margin-top: 2px;
 }
+
 .navigation-bar .nav-item {
     padding: 5px 8px;
     font-size: 14px;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.page-title {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.grid-view-item {
+    display: inline-block;
+    margin-right: 20px;
+    width: 29%;
+    max-width: 200px;
+    min-width: 150px;
+    margin-bottom: 25px;
+}
+
+.grid-view-item img {
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+.grid-view-info p {
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.grid-view-info .info-title {
+    font-weight: 600;
+}
+
+.grid-view-info .info-subtitle {
+    margin-bottom: 0;
+    font-size: 12px;
+    color: #c9c9c9;
 }

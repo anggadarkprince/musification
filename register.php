@@ -1,4 +1,4 @@
-<?php require 'support/initiator.php' ?>
+<?php require('support/initiator.php') ?>
 <?php if($session->getData('auth.is_logged_in')) redirect('index.php') ?>
 <!doctype html>
 <html lang="en">
@@ -119,4 +119,4 @@
 <script src="assets/js/register.js"></script>
 </body>
 </html>
-<?php require 'support/cleaner.php' ?>
+<?php require('support/cleaner.php') ?>
