@@ -2,6 +2,8 @@
 
 namespace App;
 
+use \mysqli;
+
 /**
  * Class Database
  * @package App
@@ -11,13 +13,14 @@ class Database
     public static $db;
 
     /**
-     * @return \mysqli
+     * @return mysqli
      */
-    public static function getConnection(){
-        if(is_null(self::$db)) {
-            self::$db = mysqli_connect('localhost', 'root', '', 'musification');
-            if(mysqli_connect_errno()) {
-                die('Could not connect: ' . mysqli_error(self::$db));
+    public static function getConnection()
+    {
+        if (is_null(self::$db)) {
+            self::$db = new mysqli('localhost', 'root', 'anggaari', 'musification');
+            if (self::$db->connect_errno) {
+                die('Could not connect: ' . self::$db->connect_error);
             }
             mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         }

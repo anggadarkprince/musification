@@ -122,3 +122,17 @@ function get_param($field, $default = '')
 {
     return get_array_value($_GET, $field, $default);
 }
+
+/**
+ * Check whether it's run on cli or web browser.
+ *
+ * @return string
+ */
+function newLine()
+{
+    if (PHP_SAPI === 'cli') {
+        return PHP_EOL;
+    } else {
+        return "<br/>";
+    }
+}

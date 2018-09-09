@@ -25,7 +25,7 @@ if (isset($_POST['register'])) {
 
     if($create) {
         flash('success', 'Welcome aboard, beat your soul with musification');
-        redirect('../index.php');
+        redirect('_back', false);
     }
 }
 

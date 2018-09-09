@@ -126,3 +126,71 @@
 .volume-bar .progress-bar {
     width: 125px;
 }
+
+.main-container {
+    height: 100%;
+    width: 100%;
+}
+
+.navigation-container {
+    background: #151515;
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navigation-bar {
+    padding: 25px;
+    overflow-y: auto;
+    height: calc(100vh - 93px);
+}
+
+.navigation-bar a {
+    color: #c9c9c9;
+}
+
+.navigation-bar a:hover,
+.navigation-bar .nav-item-link.search-link:hover {
+    color: #ffffff;
+}
+
+.navigation-bar .logo {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.navigation-bar .logo img {
+    width: 40px;
+    margin-right: 5px;
+}
+
+.navigation-bar .menu-group {
+    margin-bottom: 15px;
+}
+
+.navigation-bar .nav-title {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #a0a0a0;
+    padding: 5px 8px;
+    margin-bottom: 5px;
+}
+
+.navigation-bar .nav-item-link.search-link {
+    color: #808080;
+    display: block;
+}
+.navigation-bar .nav-item-link.search-link img {
+    width: 18px;
+    float: right;
+    margin-top: 2px;
+}
+.navigation-bar .nav-item {
+    padding: 5px 8px;
+    font-size: 14px;
+}
