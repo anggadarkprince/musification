@@ -1,11 +1,15 @@
 <?php require('support/initiator.php') ?>
 <?php if(!$session->getData('auth.is_logged_in')) redirect('register.php') ?>
+<?php
+$albumObj = new \App\Album();
+$album = $albumObj->getAlbum(get_param('id'));
+?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Welcome to Musification!</title>
+	<title>Musification - <?= $album['title'] ?></title>
     <meta name="description" content="Modern music streaming">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="assets/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css">
@@ -21,10 +25,6 @@
 
         <div class="playlist-container">
             <div class="main-content">
-                <?php
-                $albumObj = new \App\Album();
-                $album = $albumObj->getAlbum(get_param('id'));
-                ?>
                 <h1 class="page-title">Album</h1>
                 <div class="album-container">
                     <div class="artwork-wrapper">
@@ -69,6 +69,8 @@
     </div>
     <?php include('_control.php') ?>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="assets/js/player.js"></script>
 </body>
 </html>
 <?php require('support/cleaner.php') ?>

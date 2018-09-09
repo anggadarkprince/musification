@@ -44,6 +44,8 @@
     </div>
     <?php include('_control.php') ?>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="assets/js/player.js"></script>
 </body>
 </html>
 <?php require('support/cleaner.php') ?>
