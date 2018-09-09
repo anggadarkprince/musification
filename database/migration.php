@@ -41,13 +41,15 @@ $files = scandir(__DIR__);
 foreach ($files as $file) {
     if (preg_match("/^[0-9]+/", $file, $version)) {
         if ($version[0] > $lastVersion) {
-            $sql = file_get_contents($file);
-            if ($connection->query($sql)) {
-                $connection->query("UPDATE migrations SET version = '{$version[0]}'");
-                $lastVersion = $version[0];
-                echo 'Migrate file ' . $file . newLine();
-            } else {
-                $connection->rollback();
+            $sql = file_get_contents(__DIR__ . '/' . $file);
+            if (!empty($sql)) {
+                if ($connection->query($sql)) {
+                    $connection->query("UPDATE migrations SET version = '{$version[0]}'");
+                    $lastVersion = $version[0];
+                    echo 'Migrate file ' . $file . newLine();
+                } else {
+                    $connection->rollback();
+                }
             }
         }
     }

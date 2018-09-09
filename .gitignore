@@ -1,2 +1,11 @@
 vendor
 .idea
+
+assets/images/artwork/**/*
+!assets/images/artwork/.gitkeep
+
+assets/music/**/*
+!assets/music/.gitkeep
+
+!assets/images/profile/no-avatar.png
+assets/images/profile/**/*
