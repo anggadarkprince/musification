@@ -110,12 +110,12 @@
     background-size: cover;
 }
 
-.track-info .track-name {
+.now-playing-bar .track-info .track-name {
     margin-top: 6px;
     display: block;
 }
 
-.track-info .artist-name {
+.now-playing-bar .track-info .artist-name {
     font-size: 14px;
     color: #a0a0a0;
 }
@@ -244,5 +244,88 @@
 .grid-view-info .info-subtitle {
     margin-bottom: 0;
     font-size: 12px;
+    color: #a0a0a0;
+}
+
+.album-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.album-container .artwork-wrapper {
+    margin-right: 20px;
+}
+
+.album-container .artwork-wrapper img {
+    margin-bottom: 15px;
+    max-width: 250px;
+}
+
+.album-container .artwork-wrapper p {
+    margin-bottom: 5px;
+}
+
+.album-container .artwork-wrapper .total-track {
     color: #c9c9c9;
+}
+
+.album-container .track-list {
+    color: #a0a0a0;
+    flex-grow: 1;
+}
+
+.track-list .track-list-item {
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    list-style: none;
+}
+
+.track-list .track-list-item:hover {
+    background-color: #282828;
+}
+
+.track-list .control {
+    visibility: hidden;
+}
+
+.track-list .track-list-item:hover .control {
+    visibility: visible;
+}
+
+.track-list .icon-play {
+    margin-right: 15px;
+}
+
+.track-list .icon-play img {
+    width: 25px;
+    margin-right: 5px;
+}
+
+.track-list .track-info {
+    flex-grow: 1;
+}
+
+.track-list .track-info p {
+    margin-bottom: 0;
+}
+
+.track-list .icon-play,
+.track-list .track-info .track-name {
+    color: #ffffff;
+}
+
+.track-list .track-option {
+    min-width: 50px;
+    cursor: pointer;
+}
+
+.track-list .track-option img {
+    width: 20px;
+}
+
+.track-list .track-played {
+    margin-left: 20px;
 }

@@ -33,7 +33,7 @@
                                 <img src="<?= $album['artwork'] ?>" alt="<?= $album['title'] ?>">
                                 <div class="grid-view-info">
                                     <p class="info-title"><?= $album['title'] ?></p>
-                                    <p class="info-subtitle">By <?= $album['name'] ?></p>
+                                    <p class="info-subtitle">By <?= $album['artist'] ?></p>
                                 </div>
                             </a>
                         </div>

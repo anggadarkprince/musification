@@ -136,3 +136,18 @@ function newLine()
         return "<br/>";
     }
 }
+
+/**
+ * Formatting date into specific format.
+ *
+ * @param $date
+ * @param string $format
+ * @return string
+ */
+function format_date($date, $format = 'd F Y H:i')
+{
+    if (empty($date)) {
+        return '';
+    }
+    return (new DateTime($date))->format($format);
+}
