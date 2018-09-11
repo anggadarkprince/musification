@@ -151,3 +151,18 @@ function format_date($date, $format = 'd F Y H:i')
     }
     return (new DateTime($date))->format($format);
 }
+
+/**
+ * Return default value if empty.
+ *
+ * @param $value
+ * @param string $default
+ * @return string
+ */
+function if_empty($value, $default = '')
+{
+    if (empty($value)) {
+        return $default;
+    }
+    return $value;
+}

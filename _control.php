@@ -18,10 +18,10 @@
                     <button class="control-button previous" title="Previous Button">
                         <img src="assets/images/player/previous.png" alt="Previous">
                     </button>
-                    <button class="control-button play" title="Play Button">
+                    <button class="control-button play" title="Play Button" id="control-play">
                         <img src="assets/images/player/play.png" alt="Play">
                     </button>
-                    <button class="control-button pause" title="Pause Button" style="display: none">
+                    <button class="control-button pause" title="Pause Button" id="control-pause" style="display: none">
                         <img src="assets/images/player/pause.png" alt="Pause">
                     </button>
                     <button class="control-button next" title="Next Button">
