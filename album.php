@@ -35,13 +35,13 @@ $album = $albumObj->getAlbum(get_param('id'));
                             <p class="total-track"><?= $album['total_song'] ?> songs</p>
                         </div>
                     </div>
-                    <ul class="track-list">
+                    <ul class="track-list album" data-id="<?= get_param('id') ?>">
                         <?php
                         $songObj = new \App\Song();
                         $songs = $songObj->getSongAlbum(get_param('id'));
                         ?>
                         <?php foreach ($songs as $song): ?>
-                            <li class="track-list-item">
+                            <li class="track-list-item" data-id="<?= $song['id'] ?>">
                                 <div class="icon-play">
                                     <img src="assets/images/player/play-white.png" class="control" alt="Play">
                                     <span><?= $song['order'] ?></span>

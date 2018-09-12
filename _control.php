@@ -48,9 +48,6 @@
                 <button class="control-button volume" title="Volume Button">
                     <img src="assets/images/player/volume.png" alt="Volume">
                 </button>
-                <button class="control-button mute" title="Mute Button" style="display: none">
-                    <img src="assets/images/player/volume-mute.png" alt="Mute">
-                </button>
                 <div class="progress-bar">
                     <div class="progress-bar-base">
                         <div class="progress" style="width: 100%"></div>

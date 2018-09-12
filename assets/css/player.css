@@ -21,7 +21,6 @@
     box-sizing: border-box;
 }
 
-.now-playing-bar .album-wrapper,
 .now-playing-bar .volume-wrapper {
     min-width: 180px;
 }
@@ -29,6 +28,7 @@
 .now-playing-bar .album-wrapper {
     display: flex;
     flex-direction: row;
+    min-width: 250px;
 }
 
 .now-playing-bar .control-wrapper {
@@ -284,6 +284,7 @@
     list-style: none;
 }
 
+.track-list .track-list-item.playing,
 .track-list .track-list-item:hover {
     background-color: #282828;
 }
@@ -292,6 +293,7 @@
     visibility: hidden;
 }
 
+.track-list .track-list-item.playing .control,
 .track-list .track-list-item:hover .control {
     visibility: visible;
 }
