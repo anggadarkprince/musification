@@ -84,6 +84,7 @@
 
 .progress-bar {
     width: 100%;
+    padding: 10px 0;
     display: inline-flex;
     align-items: center;
     cursor: pointer;
