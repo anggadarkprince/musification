@@ -73,4 +73,24 @@ class Song extends Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    /**
+     * Increase song total of playing.
+     *
+     * @param $id
+     * @return array|bool|int
+     */
+    public function countSongPlay($id)
+    {
+        $statement = self::getConnection()->prepare('
+            UPDATE songs SET plays = plays + 1
+            WHERE id = ?
+        ');
+        $statement->bind_param('i', $id);
+        if ($statement->execute()) {
+            $song = $this->getSong($id);
+            return $song['plays'];
+        }
+        return false;
+    }
+
 }
