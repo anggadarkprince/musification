@@ -15,5 +15,11 @@ $(function () {
     function openPage(url) {
         var encodedUrl = encodeURI(url);
         $('.main-content').load(encodedUrl);
+        $('body').scrollTop(0);
+        history.pushState(null, null, url);
     }
+
+    $(window).on('popstate', function () {
+        openPage(window.location.href);
+    });
 });
