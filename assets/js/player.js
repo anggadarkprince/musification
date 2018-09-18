@@ -101,11 +101,14 @@ $(function () {
         });
     }
 
-    $('.track-list-item .icon-play').on('click', function () {
-        var trackListItem = $(this).closest('.track-list-item');
-        var trackId = trackListItem.data('id');
+    $(document).on('click', '.track-list-item .icon-play', function () {
+        let trackListItem = $(this).closest('.track-list-item');
+        let trackId = trackListItem.data('id');
         setTrack(trackId, tempPlaylist, true);
-    })
+
+        $('#control-pause').show();
+        $('#control-play').hide();
+    });
 
     function setTrack(trackId, newPlaylist, playImmediately) {
         if (newPlaylist != currentPlaylist) {
@@ -140,13 +143,16 @@ $(function () {
 
     function playSong() {
         audioElement.play();
-        if (audioElement.audio.currentTime == 0) {
+        if (audioElement.audio.currentTime === 0) {
             $.post('actions/ajax/count_song_play.php', {id: audioElement.currentlyPlaying.id}, function (result) {
                 if (!result) {
                     console.error("Something went wrong");
                 }
             });
         }
+
+        $('#control-pause').show();
+        $('#control-play').hide();
     }
 
     function pauseSong() {
@@ -161,39 +167,29 @@ $(function () {
             return;
         }
 
-        if (currentIndex == currentPlaylist.length - 1) {
+        if (currentIndex === currentPlaylist.length - 1) {
             currentIndex = 0;
         } else {
             currentIndex++;
         }
 
-        var trackToPlay = isShuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
+        let trackToPlay = isShuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
         setTrack(trackToPlay, currentPlaylist, play);
-        if (play) {
-            $('#control-pause').show();
-            $('#control-play').hide();
-        }
     }
 
     function prevSong(play = true) {
-        if (audioElement.audio.currentTime >= 3 || currentIndex == 0) {
+        if (audioElement.audio.currentTime >= 3 || currentIndex === 0) {
             audioElement.setTime(0);
             return;
         }
 
         currentIndex--;
-        var trackToPlay = currentPlaylist[currentIndex];
+        let trackToPlay = currentPlaylist[currentIndex];
         setTrack(trackToPlay, currentPlaylist, play);
-        if (play) {
-            $('#control-pause').show();
-            $('#control-play').hide();
-        }
     }
 
     $('.control-button.play').on('click', function () {
         playSong();
-        $('#control-pause').show();
-        $('#control-play').hide();
     });
 
     $('.control-button.pause').on('click', function () {

@@ -1,51 +1,32 @@
 <?php require('support/initiator.php') ?>
-<?php if(!$session->getData('auth.is_logged_in')) redirect('register.php') ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Welcome to Musification!</title>
-    <meta name="description" content="Modern music streaming">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="assets/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/app.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/player.css" rel="stylesheet" type="text/css">
-</head>
+<?php ob_start(); ?>
 
-<body>
-<div class="player">
-    <div class="main-container">
-        <?php include('_navbar.php') ?>
-
-        <div class="playlist-container">
-            <div class="main-content">
-                <h1 class="page-title">You might also like</h1>
-                <div class="grid-view-container">
-                    <?php
-                    $albumObj = new \App\Album();
-                    $albums = $albumObj->getAlbums();
-                    ?>
-                    <?php foreach ($albums as $album): ?>
-                        <div class="grid-view-item">
-                            <a href="album.php?id=<?= $album['id'] ?>">
-                                <img src="<?= $album['artwork'] ?>" alt="<?= $album['title'] ?>">
-                                <div class="grid-view-info">
-                                    <p class="info-title"><?= $album['title'] ?></p>
-                                    <p class="info-subtitle">By <?= $album['artist'] ?></p>
-                                </div>
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+    <h1 class="page-title">You might also like</h1>
+    <div class="grid-view-container">
+        <?php
+        $albumObj = new \App\Album();
+        $albums = $albumObj->getAlbums();
+        ?>
+        <?php foreach ($albums as $album): ?>
+            <div class="grid-view-item">
+                <a href="album.php?id=<?= $album['id'] ?>" class="ajax-link">
+                    <img src="<?= $album['artwork'] ?>" alt="<?= $album['title'] ?>">
+                    <div class="grid-view-info">
+                        <p class="info-title"><?= $album['title'] ?></p>
+                        <p class="info-subtitle">By <?= $album['artist'] ?></p>
+                    </div>
+                </a>
             </div>
-        </div>
+        <?php endforeach; ?>
     </div>
-    <?php include('_control.php') ?>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="assets/js/player.js"></script>
-</body>
-</html>
-<?php require('support/cleaner.php') ?>
+
+<?php
+$content = ob_get_contents();
+ob_end_clean();
+?>
+
+<?php if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])): ?>
+    <?php echo $content ?>
+<?php else: ?>
+    <?php include('_layout.php') ?>
+<?php endif; ?>
