@@ -67,7 +67,7 @@ $(function () {
 
         this.pause = function () {
             this.audio.pause();
-        }
+        };
 
         this.setTime = function (seconds) {
             this.audio.currentTime = seconds;
@@ -131,7 +131,8 @@ $(function () {
         $.get('actions/ajax/get_song.php', {id: trackId}, function (song) {
             if (song) {
                 $('.playing-bar .track-name').text(song.title);
-                $('.playing-bar .artist-name').text(song.artist);
+                $('.playing-bar .artist-name').text(song.artist).attr('href', 'artist.php?id=' + song.artist_id);
+                $('.playing-bar .album-link').attr('href', 'album.php?id=' + song.album_id);
                 $('.playing-bar .album-artwork').attr('src', song.artwork);
                 audioElement.setTrack(song);
                 if (playImmediately) {
@@ -140,6 +141,10 @@ $(function () {
             }
         });
     }
+
+    $(document).on('click', '#play-all', function () {
+        setTrack(tempPlaylist[0], tempPlaylist, true);
+    });
 
     function playSong() {
         audioElement.play();

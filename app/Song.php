@@ -62,8 +62,9 @@ class Song extends Database
     public function getSongAlbum($albumId)
     {
         $statement = self::getConnection()->prepare('
-          SELECT songs.*, artists.name AS artist FROM songs
+          SELECT songs.*, artists.name AS artist, albums.title AS album FROM songs
           INNER JOIN artists ON artists.id = songs.artist_id
+          INNER JOIN albums ON albums.id = songs.album_id
           WHERE album_id = ?
           ORDER BY songs.order ASC
         ');

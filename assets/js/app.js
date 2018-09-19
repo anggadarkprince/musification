@@ -9,12 +9,13 @@ $(function () {
         else if ($(this).data('url')) {
             openPage($(this).data('url'));
         }
-
     });
 
     function openPage(url) {
-        var encodedUrl = encodeURI(url);
-        $('.main-content').load(encodedUrl);
+        let encodedUrl = encodeURI(url);
+        $('.main-content').load(encodedUrl, function() {
+            $('.main-content').hide().fadeIn(300);
+        });
         $('body').scrollTop(0);
         history.pushState(null, null, url);
     }

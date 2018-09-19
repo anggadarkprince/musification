@@ -268,3 +268,24 @@ label {
 .copyright ul li + li {
     margin-left: 10px;
 }
+
+.center {
+    text-align: center;
+}
+
+.button {
+    padding: 7px 15px;
+    border-radius: 30px;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    cursor: pointer;
+    background-color: transparent;
+    min-width: 120px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.button.primary {
+    border: 2px solid #f4469a;
+    background-color: #f4469a;
+}

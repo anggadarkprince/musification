@@ -50,4 +50,26 @@ class Album extends Database
         return $result->fetch_assoc();
     }
 
+    /**
+     * Get albums of artist.
+     *
+     * @param $artistId
+     * @return array
+     */
+    public function getArtistAlbum($artistId)
+    {
+        $statement = self::getConnection()->prepare('
+          SELECT albums.*, artists.name AS artist, COUNT(songs.id) AS total_song 
+          FROM albums 
+          INNER JOIN artists ON artists.id = albums.artist_id
+          LEFT JOIN songs ON songs.album_id = albums.id
+          WHERE albums.artist_id = ?
+          GROUP BY albums.id
+        ');
+        $statement->bind_param('i', $artistId);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }

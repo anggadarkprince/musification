@@ -31,6 +31,9 @@ $album = $albumObj->getAlbum(get_param('id'));
                         <p class="track-name"><?= $song['title'] ?></p>
                         <span class="artist-name"><?= $song['artist'] ?></span>
                     </div>
+                    <div class="track-album">
+                        <?= $song['album'] ?>
+                    </div>
                     <div class="track-option control">
                         <img src="assets/images/player/more.png" alt="More">
                     </div>

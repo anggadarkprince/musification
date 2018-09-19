@@ -217,6 +217,10 @@
     text-align: center;
 }
 
+.page-subtitle {
+    margin-bottom: 20px;
+}
+
 .grid-view-item {
     display: inline-block;
     margin-right: 20px;
@@ -251,6 +255,7 @@
 .album-container {
     display: flex;
     flex-direction: row;
+    margin-bottom: 50px;
 }
 
 .album-container .artwork-wrapper {
@@ -270,18 +275,27 @@
     color: #c9c9c9;
 }
 
-.album-container .track-list {
+.track-list {
     color: #a0a0a0;
     flex-grow: 1;
 }
 
+.track-list {
+    margin-bottom: 30px;
+}
+
 .track-list .track-list-item {
-    margin-bottom: 5px;
     padding: 5px 10px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     cursor: pointer;
     list-style: none;
+    border-top: 1px solid #2f2f2f;
+}
+
+.track-list .track-list-item:last-child {
+    border-bottom: 1px solid #2f2f2f;
 }
 
 .track-list .track-list-item.playing,
@@ -320,15 +334,35 @@
     color: #ffffff;
 }
 
+.track-list .track-album {
+    min-width: 150px;
+    text-align: left;
+}
+
 .track-list .track-option {
-    min-width: 50px;
+    min-width: 80px;
     cursor: pointer;
+    text-align: center;
 }
 
 .track-list .track-option img {
     width: 20px;
 }
 
+.track-list .track-duration {
+    min-width: 50px;
+}
+
 .track-list .track-played {
     margin-left: 20px;
+    min-width: 80px;
+    text-align: right;
+}
+
+.artist-title {
+    margin-bottom: 30px;
+}
+
+.artist-title .page-title {
+    margin-bottom: 15px;
 }

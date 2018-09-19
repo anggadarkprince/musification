@@ -1,12 +1,12 @@
 <div class="playing-bar">
     <div class="now-playing-bar">
         <div class="album-wrapper">
-            <a href="#" class="album-link">
+            <a href="#" class="album-link ajax-link">
                 <img src="https://s.mxmcdn.net/site/images/album-placeholder.png" class="album-artwork" alt="Album Cover">
             </a>
             <div class="track-info">
                 <span class="track-name">Track name</span>
-                <span class="artist-name">Artist name</span>
+                <a href="#" class="artist-name ajax-link">Artist name</a>
             </div>
         </div>
         <div class="control-wrapper">
