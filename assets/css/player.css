@@ -136,7 +136,7 @@
     width: 100%;
 }
 
-.playlist-container {
+.view-container {
     margin-left: 220px;
     width: calc(100% - 220px);
     height: calc(100vh - 93px);

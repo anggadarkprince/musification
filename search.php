@@ -92,14 +92,16 @@ $albumResults = $albumObj->searchAlbum($query);
     </div>
     <script>
         $('.search-input').focus();
+        var pageTitle = 'Musification - Result of <?= $query ?>';
     </script>
 <?php
-$content = ob_get_contents();
+$__pageTitle = 'Musification - Result of ' . $query;
+$__content = ob_get_contents();
 ob_end_clean();
 ?>
 
 <?php if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])): ?>
-    <?php echo $content ?>
+    <?php echo $__content ?>
 <?php else: ?>
     <?php include('_layout.php') ?>
 <?php endif; ?>

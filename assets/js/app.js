@@ -6,7 +6,12 @@ function openPage(url, fade = true) {
     let encodedUrl = encodeURI(url);
     $('.main-content').load(encodedUrl, function() {
         if(fade) $('.main-content').hide().fadeIn(300);
-        $('.playlist-container').scrollTop(0);
+        $('.view-container').scrollTop(0);
+        if (typeof pageTitle !== 'undefined') {
+            $('title').text(pageTitle);
+        } else {
+            $('title').text('Musification');
+        }
     });
     history.pushState(null, null, url);
 }
@@ -27,4 +32,19 @@ $(function () {
     $(window).on('popstate', function () {
         openPage(window.location.href);
     });
+
+    $(document).on('click', '.btn-new-playlist', function (e) {
+        e.preventDefault();
+
+        var playlistName = prompt("Enter the name of your playlist");
+        if (playlistName) {
+            $.post('actions/ajax/create_playlist.php', {playlist: playlistName})
+                .done(function (data) {
+                    if (!data.result) {
+                        console.error("Something went wrong");
+                    }
+                });
+        }
+    });
+
 });

@@ -48,13 +48,17 @@ $album = $albumObj->getAlbum(get_param('id'));
             <?php endforeach; ?>
         </ul>
     </div>
+    <script>
+        var pageTitle = 'Musification - <?= $album['title'] ?>';
+    </script>
 <?php
-$content = ob_get_contents();
+$__pageTitle = 'Musification - ' . $album['title'];
+$__content = ob_get_contents();
 ob_end_clean();
 ?>
 
 <?php if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])): ?>
-    <?php echo $content ?>
+    <?php echo $__content ?>
 <?php else: ?>
     <?php include('_layout.php') ?>
 <?php endif; ?>

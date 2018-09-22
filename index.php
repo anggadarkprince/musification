@@ -19,14 +19,17 @@
             </div>
         <?php endforeach; ?>
     </div>
-
+    <script>
+        var pageTitle = 'Musification - Discover your music';
+    </script>
 <?php
-$content = ob_get_contents();
+$__pageTitle = 'Musification - Discover your music';
+$__content = ob_get_contents();
 ob_end_clean();
 ?>
 
 <?php if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])): ?>
-    <?php echo $content ?>
+    <?php echo $__content ?>
 <?php else: ?>
     <?php include('_layout.php') ?>
 <?php endif; ?>

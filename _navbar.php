@@ -27,20 +27,21 @@
         </div>
         <div class="menu-group">
             <div class="nav-title">PLAYLIST</div>
+            <?php
+            $playlistObj = new \App\Playlist();
+            $playlists = $playlistObj->getUserPlaylists($session->getData('auth.id'));
+            ?>
+            <?php foreach ($playlists as $playlist): ?>
+                <div class="nav-item">
+                    <a href="playlist.php?id=<?= $playlist['id'] ?>" class="nav-item-link ajax-link">
+                        <?= $playlist['title'] ?>
+                    </a>
+                </div>
+            <?php endforeach; ?>
             <div class="nav-item">
-                <a href="playlist.php?id=" class="nav-item-link ajax-link">Japan</a>
-            </div>
-            <div class="nav-item">
-                <a href="playlist.php?id=" class="nav-item-link ajax-link">Indonesia</a>
-            </div>
-            <div class="nav-item">
-                <a href="playlist.php?id=" class="nav-item-link ajax-link">West</a>
-            </div>
-            <div class="nav-item">
-                <a href="playlist.php?id=" class="nav-item-link ajax-link">Acoustic</a>
-            </div>
-            <div class="nav-item">
-                <a href="playlist.php?id=" class="nav-item-link ajax-link">Japan</a>
+                <a href="javascript:void(0)" class="nav-item-link btn-new-playlist">
+                    + New Playlist
+                </a>
             </div>
         </div>
     </nav>

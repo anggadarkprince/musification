@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Welcome to Musification!</title>
+    <title><?= isset($__pageTitle) ? $__pageTitle : 'Musification' ?></title>
     <meta name="description" content="Modern music streaming">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="user-id" content="<?= $session->getData('auth.id') ?>">
@@ -21,9 +21,9 @@
     <div class="main-container">
         <?php include('_navbar.php') ?>
 
-        <div class="playlist-container">
+        <div class="view-container">
             <div class="main-content">
-                <?php echo $content ?>
+                <?php echo $__content ?>
             </div>
         </div>
     </div>
