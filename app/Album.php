@@ -72,4 +72,26 @@ class Album extends Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    /**
+     * Search album by query.
+     *
+     * @param $query
+     * @param int $limit
+     * @return mixed
+     */
+    public function searchAlbum($query, $limit = 5)
+    {
+        $statement = self::getConnection()->prepare('
+          SELECT albums.*, artists.name AS artist FROM albums 
+          INNER JOIN artists ON artists.id = albums.artist_id
+          WHERE title LIKE ?
+          LIMIT ?
+        ');
+        $term = "%{$query}%";
+        $statement->bind_param('si',$term , $limit);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }

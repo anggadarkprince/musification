@@ -94,4 +94,32 @@ class Song extends Database
         return false;
     }
 
+    /**
+     * Search song by query.
+     *
+     * @param $query
+     * @param int $limit
+     * @return array
+     */
+    public function searchSong($query, $limit = 5)
+    {
+        $statement = self::getConnection()->prepare('
+          SELECT 
+            songs.*, 
+            artists.name AS artist, 
+            albums.title AS album,
+            albums.artwork
+          FROM songs
+          LEFT JOIN artists ON artists.id = songs.artist_id
+          LEFT JOIN albums on songs.album_id = albums.id
+          WHERE songs.title LIKE ?
+          LIMIT ?
+        ');
+        $term = "%{$query}%";
+        $statement->bind_param('si', $term, $limit);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }

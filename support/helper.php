@@ -120,7 +120,7 @@ function get_input($field, $default = '')
  */
 function get_param($field, $default = '')
 {
-    return get_array_value($_GET, $field, $default);
+    return urldecode(get_array_value($_GET, $field, $default));
 }
 
 /**

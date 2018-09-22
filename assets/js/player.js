@@ -89,6 +89,7 @@ $(function () {
     if ($('.track-list.album').length) {
         $.get('actions/ajax/get_album_songs.php', {id: $('.track-list.album').data('id')}, function (playlist) {
             tempPlaylist = playlist;
+            console.log(tempPlaylist);
             if (tempPlaylist.length > 0) {
                 setTrack(tempPlaylist[0], tempPlaylist, false);
             }

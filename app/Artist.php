@@ -59,4 +59,29 @@ class Artist extends Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    /**
+     * Search artist by query.
+     *
+     * @param $query
+     * @param int $limit
+     * @return array
+     */
+    public function searchArtist($query, $limit = 5)
+    {
+        $statement = self::getConnection()->prepare('
+          SELECT artists.*, COUNT(DISTINCT albums.id) AS total_album, COUNT(DISTINCT songs.id) AS total_song 
+          FROM artists 
+          INNER JOIN albums ON albums.artist_id = artists.id
+          LEFT JOIN songs ON songs.album_id = albums.id
+          WHERE artists.name LIKE ?
+          GROUP BY artists.id
+          LIMIT ?
+        ');
+        $term = "%{$query}%";
+        $statement->bind_param('si', $term, $limit);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }

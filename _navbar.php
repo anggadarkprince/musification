@@ -5,7 +5,7 @@
         </a>
         <div class="menu-group">
             <div class="nav-item">
-                <a href="search.php" class="nav-item-link search-link">
+                <a href="search.php" class="nav-item-link search-link ajax-link">
                     Search the music <img src="assets/images/player/search.png" alt="Search">
                 </a>
             </div>

@@ -77,6 +77,8 @@ class Account extends Database
         $session = new Session();
         $session->removeData('auth.id');
         $session->removeData('auth.is_logged_in');
+        $session->clearFlashData();
+        $session->clearOldData();
         if ($force) {
             return session_destroy();
         }
