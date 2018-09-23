@@ -5,7 +5,7 @@ $songObj = new \App\Song();
 
 $artistObj = new \App\Artist();
 $artist = $artistObj->getArtist(get_param('id'));
-$popularSongs = $artistObj->getPopularSong(get_param('id'));
+$songs = $artistObj->getPopularSong(get_param('id'));
 
 $albumObj = new \App\Album();
 $albums = $albumObj->getArtistAlbum(get_param('id'));
@@ -18,37 +18,9 @@ $albums = $albumObj->getArtistAlbum(get_param('id'));
     </div>
 
     <h2 class="page-subtitle">Popular</h2>
-    <ul class="track-list">
-        <?php $songOrder = 1; ?>
-        <?php foreach ($popularSongs as $song): ?>
-            <li class="track-list-item" data-id="<?= $song['id'] ?>">
-                <div class="icon-play">
-                    <img src="assets/images/player/play-white.png" class="control" alt="Play">
-                    <span><?= $songOrder++ ?></span>
-                </div>
-                <div class="track-info">
-                    <p class="track-name"><?= $song['title'] ?></p>
-                    <span class="artist-name"><?= $song['artist'] ?></span>
-                </div>
-                <div class="track-option control">
-                    <img src="assets/images/player/more.png" alt="More">
-                </div>
-                <div class="track-album">
-                    <?= $song['album'] ?>
-                </div>
-                <div class="track-duration">
-                    <?= format_date($song['duration'], 'H:i') ?>
-                </div>
-                <div class="track-played">
-                    <?= number_format($song['plays'], 0, ',', '.') ?>x
-                    plays
-                </div>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+    <?php include('_track_list.php') ?>
 
     <h2 class="page-subtitle">Albums</h2>
-
     <?php foreach ($albums as $album): ?>
         <div class="album-container">
             <div class="artwork-wrapper">
@@ -59,35 +31,8 @@ $albums = $albumObj->getArtistAlbum(get_param('id'));
                     <p class="total-track"><?= $album['total_song'] ?> songs</p>
                 </div>
             </div>
-            <ul class="track-list album" data-id="<?= $album['id'] ?>">
-                <?php $songs = $songObj->getSongAlbum($album['id']); ?>
-                <?php $songOrder = 1; ?>
-                <?php foreach ($songs as $song): ?>
-                    <li class="track-list-item" data-id="<?= $song['id'] ?>">
-                        <div class="icon-play">
-                            <img src="assets/images/player/play-white.png" class="control" alt="Play">
-                            <span><?= $songOrder++ ?></span>
-                        </div>
-                        <div class="track-info">
-                            <p class="track-name"><?= $song['title'] ?></p>
-                            <span class="artist-name"><?= $song['artist'] ?></span>
-                        </div>
-                        <div class="track-option control">
-                            <img src="assets/images/player/more.png" alt="More">
-                        </div>
-                        <div class="track-album">
-                            <?= $song['album'] ?>
-                        </div>
-                        <div class="track-duration">
-                            <?= format_date($song['duration'], 'H:i') ?>
-                        </div>
-                        <div class="track-played">
-                            <?= number_format($song['plays'], 0, ',', '.') ?>x
-                            plays
-                        </div>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+            <?php $songs = $songObj->getSongAlbum($album['id']); ?>
+            <?php include('_track_list.php') ?>
         </div>
     <?php endforeach; ?>
     <script>

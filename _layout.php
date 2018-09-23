@@ -29,6 +29,18 @@
     </div>
     <?php include('_control.php') ?>
 </div>
+
+<nav class="options-menu">
+    <input type="hidden" class="song_id" value="">
+    <select class="item" id="select-playlist">
+        <option value="">Add to Playlist</option>
+        <?php foreach ($playlists as $playlist): ?>
+            <option value="<?= $playlist['id'] ?>"><?= $playlist['title'] ?></option>
+        <?php endforeach; ?>
+    </select>
+    <div class="item" id="remove-playlist-song">Remove From Playlist</div>
+</nav>
+
 <div class="modal" id="modal-playlist">
     <div class="modal-content">
         <span class="close-button" data-close="modal">&times;</span>

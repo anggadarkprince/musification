@@ -120,4 +120,61 @@ class Playlist extends Database
 
         return $delete;
     }
+
+    /**
+     * Add song to playlist.
+     *
+     * @param $playlistId
+     * @param $songId
+     * @param $order
+     * @return int
+     */
+    public function addSong($playlistId, $songId, $order)
+    {
+        $query = "INSERT INTO playlist_songs (playlist_id, song_id, `order`) VALUES (?, ?, ?)";
+        $statement = $this->getConnection()->prepare($query);
+        $statement->bind_param('iii', $playlistId, $songId, $order);
+        $result = $statement->execute();
+        $statement->close();
+
+        return $result;
+    }
+
+    /**
+     * Remove song from playlist.
+     *
+     * @param $playlistId
+     * @param $songId
+     * @return bool
+     */
+    public function removeSong($playlistId, $songId)
+    {
+        $query = "DELETE FROM playlist_songs WHERE playlist_id = ? AND song_id = ?";
+        $statement = $this->getConnection()->prepare($query);
+        $statement->bind_param('ii', $playlistId, $songId);
+        $delete = $statement->execute();
+        $statement->close();
+
+        return $delete;
+    }
+
+    /**
+     * Get total song of playlist.
+     *
+     * @param $playlistId
+     * @return int
+     */
+    public function nextPlaylistOrder($playlistId)
+    {
+        $statement = self::getConnection()->prepare('
+          SELECT MAX(playlist_songs.order) + 1 AS next_order FROM playlist_songs
+          WHERE playlist_id = ?
+        ');
+        $statement->bind_param('i', $playlistId);
+        $statement->execute();
+        $result = $statement->get_result();
+        $next = $result->fetch_assoc();
+
+        return $next['next_order'];
+    }
 }

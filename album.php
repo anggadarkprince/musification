@@ -1,13 +1,17 @@
 <?php require('support/initiator.php') ?>
 
 <?php
+$albumId = get_param('id');
 $albumObj = new \App\Album();
-$album = $albumObj->getAlbum(get_param('id'));
+$album = $albumObj->getAlbum($albumId);
+
+$songObj = new \App\Song();
+$songs = $songObj->getSongAlbum($albumId);
 ?>
 
 <?php ob_start(); ?>
     <h1 class="page-title">Album</h1>
-    <div class="album-container">
+    <div class="album-container" data-id="<?= $album['id'] ?>">
         <div class="artwork-wrapper">
             <img src="<?= $album['artwork'] ?>" alt="<?= $album['title'] ?>">
             <div class="artwork-info">
@@ -16,38 +20,7 @@ $album = $albumObj->getAlbum(get_param('id'));
                 <p class="total-track"><?= $album['total_song'] ?> songs</p>
             </div>
         </div>
-        <ul class="track-list album" data-id="<?= get_param('id') ?>">
-            <?php
-            $songObj = new \App\Song();
-            $songs = $songObj->getSongAlbum(get_param('id'));
-            ?>
-            <?php $songOrder = 1; ?>
-            <?php foreach ($songs as $song): ?>
-                <li class="track-list-item" data-id="<?= $song['id'] ?>">
-                    <div class="icon-play">
-                        <img src="assets/images/player/play-white.png" class="control" alt="Play">
-                        <span><?= $songOrder++ ?></span>
-                    </div>
-                    <div class="track-info">
-                        <p class="track-name"><?= $song['title'] ?></p>
-                        <span class="artist-name"><?= $song['artist'] ?></span>
-                    </div>
-                    <div class="track-album">
-                        <?= $song['album'] ?>
-                    </div>
-                    <div class="track-option control">
-                        <img src="assets/images/player/more.png" alt="More">
-                    </div>
-                    <div class="track-duration">
-                        <?= format_date($song['duration'], 'H:i') ?>
-                    </div>
-                    <div class="track-played">
-                        <?= number_format($song['plays'], 0, ',', '.') ?>x
-                        plays
-                    </div>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <?php include('_track_list.php') ?>
     </div>
     <script>
         var pageTitle = 'Musification - <?= $album['title'] ?>';

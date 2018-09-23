@@ -15,7 +15,7 @@
             <div class="nav-item">
                 <a href="index.php" class="nav-item-link ajax-link">Browse</a>
             </div>
-            <div class="nav-item">
+            <div class="nav-item nav-your-music">
                 <a href="your_music.php" class="nav-item-link ajax-link">Your Music</a>
             </div>
             <div class="nav-item">
