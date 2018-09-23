@@ -3,7 +3,7 @@
 $query = get_param('q');
 
 $songObj = new \App\Song();
-$songResults = $songObj->searchSong($query);
+$songs = $songObj->searchSong($query);
 
 $artistObj = new \App\Artist();
 $artistResults = $artistObj->searchArtist($query);
@@ -19,37 +19,10 @@ $albumResults = $albumObj->searchAlbum($query);
     <div class="search-result-container">
         <h2 class="page-subtitle">Song</h2>
         <div class="search-section">
-            <?php if(empty($songResults)): ?>
+            <?php if(empty($songs)): ?>
                 <p class="mb-5">No songs found matching term <?= $query ?></p>
             <?php else: ?>
-                <ul class="track-list">
-                    <?php $songOrder = 1; ?>
-                    <?php foreach ($songResults as $song): ?>
-                        <li class="track-list-item" data-id="<?= $song['id'] ?>">
-                            <div class="icon-play">
-                                <img src="assets/images/player/play-white.png" class="control" alt="Play">
-                                <span><?= $songOrder++ ?></span>
-                            </div>
-                            <div class="track-info">
-                                <p class="track-name"><?= $song['title'] ?></p>
-                                <span class="artist-name"><?= $song['artist'] ?></span>
-                            </div>
-                            <div class="track-option control">
-                                <img src="assets/images/player/more.png" alt="More">
-                            </div>
-                            <div class="track-album">
-                                <?= $song['album'] ?>
-                            </div>
-                            <div class="track-duration">
-                                <?= format_date($song['duration'], 'H:i') ?>
-                            </div>
-                            <div class="track-played">
-                                <?= number_format($song['plays'], 0, ',', '.') ?>x
-                                plays
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+                <?php include('_track_list.php') ?>
             <?php endif; ?>
         </div>
 

@@ -12,16 +12,16 @@
         </div>
         <div class="menu-group">
             <div class="nav-title">LIBRARY</div>
-            <div class="nav-item">
+            <div class="nav-item<?= preg_match('/index.php/', $_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
                 <a href="index.php" class="nav-item-link ajax-link">Browse</a>
             </div>
-            <div class="nav-item nav-your-music">
+            <div class="nav-item nav-your-music<?= preg_match('/your_music.php/', $_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
                 <a href="your_music.php" class="nav-item-link ajax-link">Your Music</a>
             </div>
-            <div class="nav-item">
+            <div class="nav-item<?= preg_match('/recent.php/', $_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
                 <a href="recent.php" class="nav-item-link ajax-link">Recently Played</a>
             </div>
-            <div class="nav-item">
+            <div class="nav-item<?= preg_match('/local.php/', $_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
                 <a href="local.php" class="nav-item-link ajax-link">Local Files</a>
             </div>
         </div>
@@ -30,9 +30,10 @@
             <?php
             $playlistObj = new \App\Playlist();
             $playlists = $playlistObj->getUserPlaylists($session->getData('auth.id'));
+            $playlistPage = isset($playlist) ? $playlist['id'] : '';
             ?>
             <?php foreach ($playlists as $playlist): ?>
-                <div class="nav-item nav-playlist" data-id="<?= $playlist['id'] ?>">
+                <div class="nav-item nav-playlist<?= $playlistPage ==  $playlist['id'] ? ' active' : '' ?>" data-id="<?= $playlist['id'] ?>">
                     <a href="playlist.php?id=<?= $playlist['id'] ?>" class="nav-item-link ajax-link">
                         <?= $playlist['title'] ?>
                     </a>

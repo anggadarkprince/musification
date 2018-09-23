@@ -86,13 +86,21 @@ $(function () {
     let shufflePlaylist = [];
     let audioElement = new Audio();
 
-    if ($('.track-list.album').length && $('.album-container').data('id')) {
-        $.get('actions/ajax/get_album_songs.php', {id: $('.album-container').data('id')}, function (playlist) {
-            tempPlaylist = playlist;
-            if (tempPlaylist.length > 0) {
-                setTrack(tempPlaylist[0], tempPlaylist, false);
+    function getPageTrackList() {
+        var trackList = [];
+        $('.track-list-item[data-id]').each(function (index, el) {
+            if ($.inArray($(el).data('id'), trackList) === -1) {
+                trackList.push($(el).data('id'));
             }
         });
+        return trackList;
+    }
+
+    if ($('.track-list-item').length) {
+        tempPlaylist = getPageTrackList();
+        if (tempPlaylist.length > 0) {
+            setTrack(tempPlaylist[0], tempPlaylist, false);
+        }
     } else {
         $.get('actions/ajax/get_random_songs.php', function (playlist) {
             if (playlist.length > 0) {
@@ -104,6 +112,8 @@ $(function () {
     $(document).on('click', '.track-list-item .icon-play', function () {
         let trackListItem = $(this).closest('.track-list-item');
         let trackId = trackListItem.data('id');
+
+        tempPlaylist = getPageTrackList();
         setTrack(trackId, tempPlaylist, true);
 
         $('#control-pause').show();
@@ -143,6 +153,7 @@ $(function () {
     }
 
     $(document).on('click', '#play-all', function () {
+        tempPlaylist = getPageTrackList();
         setTrack(tempPlaylist[0], tempPlaylist, true);
     });
 

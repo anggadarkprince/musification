@@ -123,6 +123,10 @@ $(function () {
         $(this).addClass('active');
     });
 
+    $('.playing-bar .artist-name').on('click', function () {
+        $('.navigation-bar .nav-item').removeClass('active');
+    });
+
     $(document).on('click', '.playlist-link', function () {
         $('.navigation-bar .nav-item').removeClass('active');
         $('.nav-playlist[data-id=' + $(this).data('id') + ']').addClass('active');
