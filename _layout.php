@@ -34,10 +34,12 @@
         <span class="close-button" data-close="modal">&times;</span>
         <h1 class="modal-title">Create new playlist</h1>
         <div class="input-group">
+            <label for="playlist-title">Title</label>
             <input class="input" type="text" name="playlist_title" id="playlist-title"
                    maxlength="50" placeholder="Playlist name">
         </div>
         <div class="input-group">
+            <label for="playlist-description">Description</label>
             <textarea class="input" name="playlist_description" id="playlist-description"
                       rows="2" maxlength="500" placeholder="Playlist description"></textarea>
         </div>

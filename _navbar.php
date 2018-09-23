@@ -40,7 +40,7 @@
             <?php endforeach; ?>
             <div class="nav-item create-playlist">
                 <a href="javascript:void(0)" data-modal="#modal-playlist" class="nav-item-link btn-new-playlist">
-                    New Playlist +
+                    <strong>New Playlist +</strong>
                 </a>
             </div>
         </div>

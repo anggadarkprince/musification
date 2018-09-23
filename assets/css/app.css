@@ -138,6 +138,7 @@ h1, h2, h3, h4, h5, h6 {
 
 label {
     font-weight: 600;
+    margin-bottom: 0.3rem;
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -310,6 +311,10 @@ label {
     transition: visibility 0s linear 0.15s, opacity 0.15s 0s, transform 0.15s;
 }
 
+.modal label {
+    font-weight: 400;
+}
+
 .modal-content {
     position: absolute;
     margin-top: 20px;
@@ -317,7 +322,7 @@ label {
     left: 50%;
     transform: translate(-50%, -30%);
     background-color: white;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.35rem;
     width: 30rem;
     border-radius: 0.2rem;
 }
