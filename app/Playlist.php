@@ -18,8 +18,9 @@ class Playlist extends Database
     public function getPlaylist($id)
     {
         $statement = self::getConnection()->prepare('
-          SELECT playlists.*, COUNT(DISTINCT playlist_songs.song_id) AS total_song
+          SELECT playlists.*, users.name AS owner, COUNT(DISTINCT playlist_songs.song_id) AS total_song
           FROM playlists
+          LEFT JOIN users ON users.id = playlists.user_id
           LEFT JOIN playlist_songs ON playlist_songs.playlist_id = playlists.id
           WHERE playlists.id = ?
           GROUP BY playlists.id
@@ -100,5 +101,23 @@ class Playlist extends Database
         $statement->close();
 
         return $playlistId;
+    }
+
+    /**
+     * Delete playlist and song data.
+     *
+     * @param $playlistId
+     * @param $userId
+     * @return bool
+     */
+    public function delete($playlistId, $userId)
+    {
+        $query = "DELETE FROM playlists WHERE id = ? AND user_id = ?";
+        $statement = $this->getConnection()->prepare($query);
+        $statement->bind_param('ii', $playlistId, $userId);
+        $delete = $statement->execute();
+        $statement->close();
+
+        return $delete;
     }
 }

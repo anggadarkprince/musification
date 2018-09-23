@@ -210,7 +210,7 @@
 }
 
 .main-content {
-    padding: 20px;
+    padding: 25px;
 }
 
 .page-title {
@@ -261,6 +261,8 @@
 
 .album-container .artwork-wrapper {
     margin-right: 20px;
+    min-width: 200px;
+    max-width: 250px;
 }
 
 .album-container .artwork-wrapper img {
@@ -393,7 +395,7 @@
     padding: 35px 25px;
 }
 
-.playlist-container img {
+.cover-playlist {
     border: 2px solid;
     padding: 10px;
 }

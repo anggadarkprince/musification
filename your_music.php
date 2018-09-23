@@ -14,8 +14,8 @@ $playlists = $playlistObj->getUserPlaylists($session->getData('auth.id'));
         <div class="grid-view-container">
             <?php foreach ($playlists as $playlist): ?>
                 <div class="grid-view-item">
-                    <a href="playlist.php?id=<?= $playlist['id'] ?>" class="ajax-link">
-                        <img src="assets/images/player/playlist.png" alt="Playlist">
+                    <a href="playlist.php?id=<?= $playlist['id'] ?>" class="playlist-link ajax-link" data-id="<?= $playlist['id'] ?>">
+                        <img src="assets/images/player/playlist.png" alt="Playlist" class="cover-playlist">
                         <div class="grid-view-info">
                             <p class="info-title"><?= $playlist['title'] ?></p>
                             <p class="info-subtitle"><?= $playlist['total_song'] ?> songs</p>

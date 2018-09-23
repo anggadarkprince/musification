@@ -32,7 +32,7 @@
             $playlists = $playlistObj->getUserPlaylists($session->getData('auth.id'));
             ?>
             <?php foreach ($playlists as $playlist): ?>
-                <div class="nav-item">
+                <div class="nav-item nav-playlist" data-id="<?= $playlist['id'] ?>">
                     <a href="playlist.php?id=<?= $playlist['id'] ?>" class="nav-item-link ajax-link">
                         <?= $playlist['title'] ?>
                     </a>

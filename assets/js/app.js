@@ -58,17 +58,17 @@ $(function () {
     $(document).on('click', '.btn-new-playlist', function (e) {
         e.preventDefault();
 
-        modalPlaylist.find('#playlist_title').val('');
-        modalPlaylist.find('#playlist_description').val('');
+        modalPlaylist.find('#playlist-title').val('');
+        modalPlaylist.find('#playlist-description').val('');
 
         setTimeout(function () {
-            modalPlaylist.find('#playlist_title').focus();
+            modalPlaylist.find('#playlist-title').focus();
         }, 200);
     });
 
     buttonSavePlaylist.on('click', function () {
-        var playlist = modalPlaylist.find('#playlist_title').val();
-        var description = modalPlaylist.find('#playlist_description').val();
+        var playlist = modalPlaylist.find('#playlist-title').val();
+        var description = modalPlaylist.find('#playlist-description').val();
 
         if (playlist) {
             buttonSavePlaylist.prop('disabled', true);
@@ -90,9 +90,40 @@ $(function () {
         }
     });
 
+
+    var modalDeletePlaylist = $('#modal-delete-playlist');
+    var buttonRemovePlaylist = modalDeletePlaylist.find('.btn-remove-playlist');
+
+    $(document).on('click', '.btn-delete-playlist', function (e) {
+        e.preventDefault();
+        modalDeletePlaylist.find('#delete-playlist-id').val($(this).data('id'));
+        modalDeletePlaylist.find('#playlist-title').text($(this).data('title'));
+    });
+
+    buttonRemovePlaylist.on('click', function () {
+        var playlistId = modalDeletePlaylist.find('#delete-playlist-id').val();
+
+        $.post('actions/ajax/delete_playlist.php', {id: playlistId})
+            .done(function (data) {
+                buttonRemovePlaylist.prop('disabled', false);
+                if (data.result) {
+                    modalDeletePlaylist.removeClass('show-modal');
+                    $('.nav-playlist[data-id=' + playlistId + ']').remove();
+                    openPage('your_music.php');
+                } else {
+                    console.error("Something went wrong");
+                }
+            });
+    });
+
     $('.navigation-bar').on('click', '.nav-item', function () {
         $('.navigation-bar .nav-item').removeClass('active');
         $(this).addClass('active');
-    })
+    });
+
+    $(document).on('click', '.playlist-link', function () {
+        $('.navigation-bar .nav-item').removeClass('active');
+        $('.nav-playlist[data-id=' + $(this).data('id') + ']').addClass('active');
+    });
 
 });

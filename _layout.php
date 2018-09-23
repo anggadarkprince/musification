@@ -34,15 +34,30 @@
         <span class="close-button" data-close="modal">&times;</span>
         <h1 class="modal-title">Create new playlist</h1>
         <div class="input-group">
-            <input class="input" type="text" name="playlist_title" id="playlist_title"
+            <input class="input" type="text" name="playlist_title" id="playlist-title"
                    maxlength="50" placeholder="Playlist name">
         </div>
         <div class="input-group">
-            <textarea class="input" name="playlist_description" id="playlist_description"
+            <textarea class="input" name="playlist_description" id="playlist-description"
                       rows="2" maxlength="500" placeholder="Playlist description"></textarea>
         </div>
-        <div class="input-group right">
+        <div class="mb-2 right">
             <button type="button" class="button primary btn-save-playlist">Create Playlist</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-delete-playlist">
+    <div class="modal-content">
+        <span class="close-button" data-close="modal">&times;</span>
+        <h1 class="modal-title">Delete playlist</h1>
+        <div class="mb-3">
+            <input type="hidden" id="delete-playlist-id" value="">
+            <p class="mb-1">Are you sure want to delete playlist <strong id="playlist-title"></strong>?</p>
+            <span class="fade">This action is irreversible, proceed carefully.</span>
+        </div>
+        <div class="mb-2 right">
+            <button type="button" class="button primary btn-remove-playlist">Delete Playlist</button>
         </div>
     </div>
 </div>
