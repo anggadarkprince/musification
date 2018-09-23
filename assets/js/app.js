@@ -78,6 +78,9 @@ $(function () {
                     if (data.result) {
                         modalPlaylist.removeClass('show-modal');
                         $('.playlist-group .create-playlist').before("<div class='nav-item'><a href='playlist.php?id=" + data.result + "' class='nav-item-link ajax-link'>" + playlist + "</div>")
+                        if ($('.playlist-container').length) {
+                            openPage('your_music.php');
+                        }
                     } else {
                         console.error("Something went wrong");
                     }
@@ -86,5 +89,10 @@ $(function () {
             alert('Playlist title is required');
         }
     });
+
+    $('.navigation-bar').on('click', '.nav-item', function () {
+        $('.navigation-bar .nav-item').removeClass('active');
+        $(this).addClass('active');
+    })
 
 });

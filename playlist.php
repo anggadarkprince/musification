@@ -1,32 +1,22 @@
 <?php require('support/initiator.php') ?>
 
 <?php
-$albumObj = new \App\Album();
-$album = $albumObj->getAlbum(get_param('id'));
+$playlistObj = new \App\Playlist();
+$playlist = $playlistObj->getPlaylist(get_param('id'));
+$playlistSongs = $playlistObj->getPlaylistSongs(get_param('id'));
 ?>
 
 <?php ob_start(); ?>
-    <h1 class="page-title">Album</h1>
-    <div class="album-container">
-        <div class="artwork-wrapper">
-            <img src="<?= $album['artwork'] ?>" alt="<?= $album['title'] ?>">
-            <div class="artwork-info">
-                <h2 class="album-title"><?= $album['title'] ?></h2>
-                <p class="album-artist">By <?= $album['artist'] ?></p>
-                <p class="total-track"><?= $album['total_song'] ?> songs</p>
-            </div>
-        </div>
+    <h1 class="page-title">Playlist: <?= $playlist['title'] ?></h1>
+    <?php if(empty($playlistSongs)): ?>
+        <p>This playlist is empty</p>
+    <?php else: ?>
         <ul class="track-list album" data-id="<?= get_param('id') ?>">
-            <?php
-            $songObj = new \App\Song();
-            $songs = $songObj->getSongAlbum(get_param('id'));
-            ?>
-            <?php $songOrder = 1; ?>
-            <?php foreach ($songs as $song): ?>
+            <?php foreach ($playlistSongs as $song): ?>
                 <li class="track-list-item" data-id="<?= $song['id'] ?>">
                     <div class="icon-play">
                         <img src="assets/images/player/play-white.png" class="control" alt="Play">
-                        <span><?= $songOrder++ ?></span>
+                        <span><?= $song['order'] ?></span>
                     </div>
                     <div class="track-info">
                         <p class="track-name"><?= $song['title'] ?></p>
@@ -48,12 +38,12 @@ $album = $albumObj->getAlbum(get_param('id'));
                 </li>
             <?php endforeach; ?>
         </ul>
-    </div>
+    <?php endif; ?>
     <script>
-        var pageTitle = 'Musification - <?= $album['title'] ?>';
+        var pageTitle = 'Musification - <?= $playlist['title'] ?>';
     </script>
 <?php
-$__pageTitle = 'Musification - ' . $album['title'];
+$__pageTitle = 'Musification - ' . $playlist['title'];
 $__content = ob_get_contents();
 ob_end_clean();
 ?>

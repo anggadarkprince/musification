@@ -7,9 +7,23 @@ $playlists = $playlistObj->getUserPlaylists($session->getData('auth.id'));
 
 <?php ob_start(); ?>
     <h1 class="page-title">Your Music</h1>
+    <div class="center">
+        <button class="button primary btn-new-playlist" data-modal="#modal-playlist">NEW PLAYLIST</button>
+    </div>
     <div class="playlist-container">
-        <div class="center">
-            <button class="button primary btn-new-playlist" data-modal="#modal-playlist">NEW PLAYLIST</button>
+        <div class="grid-view-container">
+            <?php foreach ($playlists as $playlist): ?>
+                <div class="grid-view-item">
+                    <a href="playlist.php?id=<?= $playlist['id'] ?>" class="ajax-link">
+                        <img src="assets/images/player/playlist.png" alt="Playlist">
+                        <div class="grid-view-info">
+                            <p class="info-title"><?= $playlist['title'] ?></p>
+                            <p class="info-subtitle"><?= $playlist['total_song'] ?> songs</p>
+                            <p class="info-subtitle fade"><?= if_empty($playlist['description'], 'No description') ?></p>
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 <?php

@@ -369,3 +369,7 @@ label {
 .input::placeholder {
     color: #a0a0a0;
 }
+
+.fade {
+    opacity: 0.5;
+}

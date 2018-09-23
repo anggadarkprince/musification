@@ -162,6 +162,7 @@
     color: #c9c9c9;
 }
 
+.navigation-bar .nav-item.active a,
 .navigation-bar a:hover,
 .navigation-bar .nav-item-link.search-link:hover {
     color: #f4469a;
@@ -386,6 +387,15 @@
 
 .search-section {
     margin-bottom: 40px;
+}
+
+.playlist-container {
+    padding: 35px 25px;
+}
+
+.playlist-container img {
+    border: 2px solid;
+    padding: 10px;
 }
 
 .list {
