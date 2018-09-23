@@ -21,13 +21,13 @@
                 <?php include_once '_alert.php' ?>
                 <div class="input-group">
                     <label for="login_username">Username</label>
-                    <input id="login_username" name="login_username" type="text" value="<?= get_old('login_username') ?>"
+                    <input class="input" id="login_username" name="login_username" type="text" value="<?= get_old('login_username') ?>"
                            placeholder="Username or email" required>
                     <?= validation_error('login_username') ?>
                 </div>
                 <div class="input-group">
                     <label for="login_password">Password</label>
-                    <input id="login_password" name="login_password" type="password" placeholder="Your secret password" required>
+                    <input class="input" id="login_password" name="login_password" type="password" placeholder="Your secret password" required>
                     <?= validation_error('login_password') ?>
                 </div>
 
@@ -44,31 +44,31 @@
                 <h2>Create your free account</h2>
                 <div class="input-group">
                     <label for="name">Your Name</label>
-                    <input id="name" name="name" type="text" value="<?= get_old('name') ?>"
+                    <input class="input" id="name" name="name" type="text" value="<?= get_old('name') ?>"
                            placeholder="Your full name" required maxlength="30">
                     <?= validation_error('name') ?>
                 </div>
                 <div class="input-group">
                     <label for="username">Username</label>
-                    <input id="username" name="username" type="text" value="<?= get_old('username') ?>"
+                    <input class="input" id="username" name="username" type="text" value="<?= get_old('username') ?>"
                            placeholder="Unique user ID" required maxlength="20">
                     <?= validation_error('username') ?>
                 </div>
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input id="email" name="email" type="email" value="<?= get_old('email') ?>"
+                    <input class="input" id="email" name="email" type="email" value="<?= get_old('email') ?>"
                            placeholder="Email address" required maxlength="50">
                     <?= validation_error('email') ?>
                 </div>
                 <div class="input-group">
                     <label for="password">Password</label>
-                    <input id="password" name="password" type="password"
+                    <input class="input" id="password" name="password" type="password"
                            placeholder="Your secure password" required maxlength="50">
                     <?= validation_error('password') ?>
                 </div>
                 <div class="input-group">
                     <label for="confirm_password">Confirm Password</label>
-                    <input id="confirm_password" name="confirm_password" type="password"
+                    <input class="input" id="confirm_password" name="confirm_password" type="password"
                            placeholder="Repeat your password" required maxlength="50">
                     <?= validation_error('confirm_password') ?>
                 </div>

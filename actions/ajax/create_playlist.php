@@ -9,7 +9,8 @@ $session = new \App\Session();
 $playlist = new \App\Playlist();
 
 $playlistName = get_input('playlist');
-$result = $playlist->create($playlistName, '', '', $session->getData('auth.id'));
+$playlistDesc = get_input('description');
+$result = $playlist->create($playlistName, $playlistDesc, '', $session->getData('auth.id'));
 
 header('Content-Type: application/json');
 echo json_encode([

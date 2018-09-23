@@ -35,6 +35,7 @@ class Playlist extends Database
      *
      * @param $title
      * @param $description
+     * @param $cover
      * @param $userId
      * @return bool
      */
@@ -43,9 +44,10 @@ class Playlist extends Database
         $query = "INSERT INTO playlists (title, description, cover, user_id) VALUES (?, ?, ?, ?)";
         $statement = $this->getConnection()->prepare($query);
         $statement->bind_param('sssi', $title, $description, $cover, $userId);
-        $result = $statement->execute();
+        $statement->execute();
+        $playlistId = $statement->insert_id;
         $statement->close();
 
-        return $result;
+        return $playlistId;
     }
 }

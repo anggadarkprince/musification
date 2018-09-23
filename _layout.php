@@ -29,6 +29,23 @@
     </div>
     <?php include('_control.php') ?>
 </div>
+<div class="modal" id="modal-playlist">
+    <div class="modal-content">
+        <span class="close-button" data-close="modal">&times;</span>
+        <h1 class="modal-title">Create new playlist</h1>
+        <div class="input-group">
+            <input class="input" type="text" name="playlist_title" id="playlist_title"
+                   maxlength="50" placeholder="Playlist name">
+        </div>
+        <div class="input-group">
+            <textarea class="input" name="playlist_description" id="playlist_description"
+                      rows="2" maxlength="500" placeholder="Playlist description"></textarea>
+        </div>
+        <div class="input-group right">
+            <button type="button" class="button primary btn-save-playlist">Create Playlist</button>
+        </div>
+    </div>
+</div>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/player.js"></script>
 <script src="assets/js/search.js"></script>

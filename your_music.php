@@ -9,7 +9,7 @@ $playlists = $playlistObj->getUserPlaylists($session->getData('auth.id'));
     <h1 class="page-title">Your Music</h1>
     <div class="playlist-container">
         <div class="center">
-            <button class="button primary btn-new-playlist">NEW PLAYLIST</button>
+            <button class="button primary btn-new-playlist" data-modal="#modal-playlist">NEW PLAYLIST</button>
         </div>
     </div>
 <?php
