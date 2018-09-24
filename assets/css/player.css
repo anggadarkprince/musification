@@ -17,18 +17,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 12px 15px;
     box-sizing: border-box;
 }
 
 .now-playing-bar .volume-wrapper {
-    min-width: 180px;
+    min-width: 230px;
 }
 
 .now-playing-bar .album-wrapper {
     display: flex;
     flex-direction: row;
-    min-width: 250px;
+    min-width: 230px;
 }
 
 .now-playing-bar .control-wrapper {
@@ -71,7 +71,7 @@
 }
 
 .playback-bar {
-    margin-top: 10px;
+    margin-top: 5px;
     display: flex;
 }
 
@@ -84,7 +84,7 @@
 
 .progress-bar {
     width: 100%;
-    padding: 10px 0;
+    padding: 8px 0;
     display: inline-flex;
     align-items: center;
     cursor: pointer;
@@ -125,6 +125,7 @@
     width: 180px;
     display: flex;
     align-items: center;
+    margin-left: auto;
 }
 
 .volume-bar .progress-bar {
@@ -139,7 +140,7 @@
 .view-container {
     margin-left: 220px;
     width: calc(100% - 220px);
-    height: calc(100vh - 93px);
+    height: calc(100vh - 85px);
     overflow-y: auto;
 }
 
@@ -155,7 +156,7 @@
 .navigation-bar {
     padding: 25px;
     overflow-y: auto;
-    height: calc(100vh - 93px);
+    height: calc(100vh - 85px);
 }
 
 .navigation-bar a {

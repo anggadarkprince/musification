@@ -3,6 +3,28 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 /**
+ * Get config by file and key.
+ *
+ * @param $key
+ * @return bool
+ */
+function config($key)
+{
+    $env = new Dotenv\Dotenv(__DIR__ . '/../');
+    $env->load();
+
+    $configKeys = explode('.', $key);
+
+    $setting = __DIR__ . '/../config/' . $configKeys[0] . '.php';
+    if (is_file($setting)) {
+        $configs = include $setting;
+
+        return $configs[$configKeys[1]];
+    }
+    return false;
+}
+
+/**
  * Redirect to specific url.
  *
  * @param $path

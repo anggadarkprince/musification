@@ -1,12 +1,11 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../support/helper.php';
-
-$account = new \App\Account();
-$validator = new \App\Validator();
 
 if (isset($_POST['register'])) {
+    $account = new \App\Account();
+    $validator = new \App\Validator();
+
     $validator->validate([
         'name' => 'required|maxLength[50]',
         'email' => 'required|email|maxLength[50]',

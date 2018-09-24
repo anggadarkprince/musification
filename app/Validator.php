@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 class Validator
 {
     private $errors = [];
@@ -191,7 +190,8 @@ class Validator
         $field = $params[1];
 
         $db = new Database();
-        $statement = $db->getConnection()->prepare("SELECT id FROM {$table} WHERE {$field} = ? AND {$table}.id != ?");
+        $query = "SELECT id FROM {$table} WHERE {$field} = ? AND {$table}.id != ?";
+        $statement = $db->getConnection()->prepare($query);
         $statement->bind_param('si', $value, $exceptId);
         $statement->execute();
         $result = $statement->get_result();

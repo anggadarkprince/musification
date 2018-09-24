@@ -1,6 +1,8 @@
 vendor
 .idea
 
+.env
+
 assets/images/artwork/**/*
 !assets/images/artwork/.gitkeep
 

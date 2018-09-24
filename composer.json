@@ -10,7 +10,13 @@
         }
     ],
     "autoload": {
+        "files": [
+            "support/helper.php",
+            "support/initiator.php"
+        ],
         "psr-4": {"App\\": "app/"}
     },
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^2.5"
+    }
 }

@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 class Account extends Database
 {
     /**

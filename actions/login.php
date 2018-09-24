@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../support/helper.php';
 
 $account = new \App\Account();
 $validator = new \App\Validator();

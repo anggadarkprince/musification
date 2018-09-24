@@ -1,9 +1,9 @@
 <?php
-$environment = 'development';
 
-if ($environment != 'production') {
-    error_reporting(-1);
-    ini_set('display_errors', 1);
-}
-
-date_default_timezone_set('Asia/Jakarta');
+return [
+    'name' => getenv('APP_NAME'),
+    'url' => getenv('APP_URL'),
+    'author' => getenv('APP_AUTHOR'),
+    'environment' => getenv('APP_ENVIRONMENT'),
+    'timezone' => getenv('APP_TIMEZONE'),
+];
