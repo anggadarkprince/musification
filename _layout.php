@@ -75,6 +75,7 @@
         </div>
     </div>
 </div>
+<script src="assets/js/db.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/player.js"></script>
 <script src="assets/js/search.js"></script>

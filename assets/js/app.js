@@ -16,6 +16,33 @@ function openPage(url, fade = true) {
     history.pushState(null, null, url);
 }
 
+function setTrackRecentPlayed() {
+    if($('.track-recent').length) {
+        let trackTemplate = $('#track-list-template').html();
+        let songs = readAllData(STORE_HISTORIES);
+        songs.onsuccess = function(event) {
+            let songData = event.target.result;
+            if(songData.length > 0) {
+                $('.track-recent').empty();
+            }
+            songData.sort((a,b) => (a.played_at < b.played_at) ? 1 : ((b.played_at < a.played_at) ? -1 : 0));
+            songData.forEach(function (song, index) {
+                $('.track-recent').append(
+                    trackTemplate
+                        .replace(/{{order}}/g, (index + 1))
+                        .replace(/{{id}}/g, song.id)
+                        .replace(/{{album_id}}/g, song.album_id)
+                        .replace(/{{title}}/g, song.title)
+                        .replace(/{{artist}}/g, song.artist)
+                        .replace(/{{album}}/g, song.album)
+                        .replace(/{{duration}}/g, song.duration.substring(0, 5))
+                        .replace(/{{plays}}/g, song.plays)
+                );
+            });
+        };
+    }
+}
+
 $(function () {
 
     // modal functionality
@@ -199,5 +226,4 @@ $(function () {
             }
         });
     });
-
 });

@@ -16,7 +16,12 @@ $songs = $songObj->getSongAlbum($albumId);
             <img src="<?= $album['artwork'] ?>" alt="<?= $album['title'] ?>">
             <div class="artwork-info">
                 <h2 class="album-title"><?= $album['title'] ?></h2>
-                <p class="album-artist">By <?= $album['artist'] ?></p>
+                <p class="album-artist">
+                    By
+                    <a href="artist.php?id=<?= $album['artist_id'] ?>" class="ajax-link">
+                        <?= $album['artist'] ?>
+                    </a>
+                </p>
                 <p class="total-track"><?= $album['total_song'] ?> songs</p>
             </div>
         </div>

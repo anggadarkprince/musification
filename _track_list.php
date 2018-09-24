@@ -11,7 +11,9 @@
                 <span class="artist-name"><?= $song['artist'] ?></span>
             </div>
             <div class="track-album">
-                <?= $song['album'] ?>
+                <a href="album.php?id=<?= $song['album_id'] ?>" class="ajax-link">
+                    <?= $song['album'] ?>
+                </a>
             </div>
             <div class="track-option control">
                 <img src="assets/images/player/more.png" alt="More" class="option-button">

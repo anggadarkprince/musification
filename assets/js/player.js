@@ -96,7 +96,7 @@ $(function () {
         return trackList;
     }
 
-    if ($('.track-list-item').length) {
+    if ($('.track-list-item').length && !$('.track-recent').length) {
         tempPlaylist = getPageTrackList();
         if (tempPlaylist.length > 0) {
             setTrack(tempPlaylist[0], tempPlaylist, false);
@@ -144,8 +144,19 @@ $(function () {
                 $('.playing-bar .artist-name').text(song.artist).attr('href', 'artist.php?id=' + song.artist_id);
                 $('.playing-bar .album-link').attr('href', 'album.php?id=' + song.album_id);
                 $('.playing-bar .album-artwork').attr('src', song.artwork);
+
+                song.played_at = new Date();
                 audioElement.setTrack(song);
                 if (playImmediately) {
+                    let recentSongs = readAllData(STORE_HISTORIES);
+                    recentSongs.onsuccess = function(event) {
+                        let allSongs = event.target.result;
+                        if(allSongs.length >= 20) {
+                            let lastSong = allSongs.pop();
+                            removeData(STORE_HISTORIES, lastSong.id);
+                        }
+                    };
+                    writeData(STORE_HISTORIES, song);
                     playSong();
                 }
             }
