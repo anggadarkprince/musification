@@ -83,7 +83,7 @@
 
         <div id="login-text">
             <div class="login-caption">
-                <h2>Musification</h2>
+                <h2><?= config('app.name') ?></h2>
                 <h1>Get the greatest music right now</h1>
                 <h2>Listen music freely for free forever</h2>
                 <p>The place where the beat comes alive</p>
@@ -104,7 +104,7 @@
             </div>
 
             <div class="copyright">
-                <p>&copy Copyright <?= date('Y') ?> <strong>Angga Ari Wijaya</strong> all right reserved.</p>
+                <p>&copy Copyright <?= date('Y') ?> <strong class="color-primary"><?= config('app.author') ?></strong> all right reserved.</p>
                 <ul>
                     <li><a href="terms.php">Terms</a></li>
                     <li><a href="privacy.php">Privacy</a></li>
