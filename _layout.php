@@ -78,6 +78,7 @@
 <script src="assets/js/app.js"></script>
 <script src="assets/js/player.js"></script>
 <script src="assets/js/search.js"></script>
+<script src="assets/js/account.js"></script>
 </body>
 </html>
 <?php require('support/cleaner.php') ?>

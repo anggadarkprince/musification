@@ -106,4 +106,42 @@ class Account extends Database
         return $result;
     }
 
+    /**
+     * Get user by id.
+     *
+     * @param $id
+     * @return array
+     */
+    public function getUser($id)
+    {
+        $statement = self::getConnection()->prepare('
+          SELECT * FROM users WHERE id = ?
+        ');
+        $statement->bind_param('i', $id);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_assoc();
+    }
+
+    /**
+     * Update user by given user id.
+     *
+     * @param $id
+     * @param $name
+     * @param $username
+     * @param $email
+     * @param $password
+     * @return bool
+     */
+    public function updateUser($id, $name, $username, $email, $password)
+    {
+        $query = "UPDATE users SET name = ?, username = ?, email = ?, password = ? WHERE id = ?";
+        $statement = $this->getConnection()->prepare($query);
+        $statement->bind_param('ssssi', $name, $username, $email, $password, $id);
+        $result = $statement->execute();
+        $statement->close();
+
+        return $result;
+    }
+
 }

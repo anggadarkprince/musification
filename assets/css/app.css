@@ -175,7 +175,7 @@ label {
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .input-group .input {
@@ -186,6 +186,15 @@ label {
     font-size: 12px;
     color: brown;
     margin-top: 8px;
+}
+
+.input-group label {
+    margin-bottom: 0;
+}
+
+.form-info {
+    font-size: 13px;
+    color: #c9c9c9;
 }
 
 .alert {
@@ -315,6 +324,10 @@ label {
     font-weight: 400;
 }
 
+.modal .input {
+    color: #1c1c1c;
+}
+
 .modal-content {
     position: absolute;
     margin-top: 20px;
@@ -365,6 +378,7 @@ label {
     -webkit-transition: all 0.20s ease-in-out;
     -moz-transition: all 0.20s ease-in-out;
     -o-transition: all 0.20s ease-in-out;
+    color: #ffffff;
 }
 
 .input:focus {

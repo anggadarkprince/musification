@@ -443,3 +443,8 @@
     background-color: #333;
     border-color: #333;
 }
+
+.account-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}

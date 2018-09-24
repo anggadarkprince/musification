@@ -35,7 +35,7 @@ class Validator
         $session = new Session();
         $session->clearFlashData(Session::KEY_VALIDATION_FLASH);
         $session->clearOldData();
-        
+
         if (empty($data)) {
             $data = $_POST;
         }
@@ -62,7 +62,8 @@ class Validator
                 if (!$this->{$pureMethod}($data[$field], $paramValue)) {
                     $parsedMessage = $this->messages[$pureMethod];
                     $parsedField = ucwords(str_replace(['_', '-'], ' ', $field));
-                    $this->errors[$field][] = sprintf($parsedMessage, $parsedField, $param);;
+                    $parsedParam = ucwords(str_replace(['_', '-'], ' ', $param));
+                    $this->errors[$field][] = sprintf($parsedMessage, $parsedField, $parsedParam);
                 }
             }
         }
@@ -182,13 +183,16 @@ class Validator
      */
     public function unique($value, $tableField)
     {
-        $params = explode('.', $tableField);
+        $allParams = explode(',', $tableField);
+        $exceptId = key_exists(1, $allParams) ? $allParams[1] : -1;
+
+        $params = explode('.', $allParams[0]);
         $table = $params[0];
         $field = $params[1];
 
         $db = new Database();
-        $statement = $db->getConnection()->prepare("SELECT id FROM {$table} WHERE {$field} = ?");
-        $statement->bind_param('s', $value);
+        $statement = $db->getConnection()->prepare("SELECT id FROM {$table} WHERE {$field} = ? AND {$table}.id != ?");
+        $statement->bind_param('si', $value, $exceptId);
         $statement->execute();
         $result = $statement->get_result();
         $statement->close();

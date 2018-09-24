@@ -45,5 +45,14 @@
                 </a>
             </div>
         </div>
+        <div class="menu-group playlist-group">
+            <div class="nav-title">SETTING</div>
+            <div class="nav-item<?= preg_match('/account.php/', $_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
+                <a href="account.php" class="nav-item-link ajax-link">Account</a>
+            </div>
+            <div class="nav-item">
+                <a href="actions/logout.php" class="nav-item-link">Logout</a>
+            </div>
+        </div>
     </nav>
 </div>

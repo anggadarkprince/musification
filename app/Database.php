@@ -18,7 +18,7 @@ class Database
     public static function getConnection()
     {
         if (is_null(self::$db)) {
-            self::$db = new mysqli('localhost', 'root', 'anggaari', 'musification');
+            self::$db = new mysqli('localhost', 'root', '', 'musification');
             if (self::$db->connect_errno) {
                 die('Could not connect: ' . self::$db->connect_error);
             }
