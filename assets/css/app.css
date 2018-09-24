@@ -307,6 +307,10 @@ label {
     background-color: #f4469a;
 }
 
+.color-primary {
+    color: #f4469a;
+}
+
 .modal {
     position: fixed;
     left: 0;

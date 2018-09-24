@@ -252,6 +252,10 @@ $(function () {
         isMouseDown = false;
     });
 
+    $(document).on('mouseup', function (e) {
+        isMouseDown = false;
+    });
+
 
     $('.volume-bar .progress-bar').on('mousedown', function () {
         isMouseDown = true;
