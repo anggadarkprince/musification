@@ -5,7 +5,7 @@ const STORE_LOCALS = 'locals';
 if (!window.indexedDB) {
     window.alert("Your browser doesn't support a stable version of IndexedDB. Recently Played and Local Files feature will not be available. Please user another or update your Browser!");
 } else {
-    let DBOpenRequest = indexedDB.open("musification", 2);
+    let DBOpenRequest = indexedDB.open("musification", 1);
 
     DBOpenRequest.onerror = function (event) {
         alert("Database error: " + event.target.errorCode);
@@ -21,7 +21,7 @@ if (!window.indexedDB) {
             db.createObjectStore(STORE_HISTORIES, {keyPath: "id"}).createIndex('played_at', 'played_at', { unique: false });
         }
         if (!db.objectStoreNames.contains(STORE_LOCALS)) {
-            db.createObjectStore(STORE_LOCALS, {autoIncrement: true});
+            db.createObjectStore(STORE_LOCALS, {keyPath: "id"});
         }
 
     }
@@ -40,7 +40,7 @@ function readData(storeName, id) {
     if (db) {
         let tx = db.transaction([storeName], 'readonly');
         let store = tx.objectStore(storeName);
-        return store.get(id).result;
+        return store.get(id);
     }
 }
 

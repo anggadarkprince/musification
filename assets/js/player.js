@@ -54,7 +54,7 @@ $(function () {
 
         this.audio.addEventListener('ended', function () {
             nextSong();
-        })
+        });
 
         this.setTrack = function (track) {
             this.currentlyPlaying = track;
@@ -138,29 +138,47 @@ $(function () {
             $('.track-list-item[data-id="' + trackId + '"]').addClass('playing');
         }
 
-        $.get('actions/ajax/get_song.php', {id: trackId}, function (song) {
-            if (song) {
-                $('.playing-bar .track-name').text(song.title);
-                $('.playing-bar .artist-name').text(song.artist).attr('href', 'artist.php?id=' + song.artist_id);
-                $('.playing-bar .album-link').attr('href', 'album.php?id=' + song.album_id);
-                $('.playing-bar .album-artwork').attr('src', song.artwork);
+        if (!Number.isInteger(trackId)) {
+            let song = readData(STORE_LOCALS, trackId);
+            song.onsuccess = function (event) {
+                let songData = event.target.result;
 
-                song.played_at = new Date();
-                audioElement.setTrack(song);
-                if (playImmediately) {
-                    let recentSongs = readAllData(STORE_HISTORIES);
-                    recentSongs.onsuccess = function(event) {
-                        let allSongs = event.target.result;
-                        if(allSongs.length >= 20) {
-                            let lastSong = allSongs.pop();
-                            removeData(STORE_HISTORIES, lastSong.id);
-                        }
-                    };
-                    writeData(STORE_HISTORIES, song);
-                    playSong();
+                $('.playing-bar .track-name').text(songData.title);
+                $('.playing-bar .artist-name').text('Local');
+                $('.playing-bar .album-link').attr('href', '#');
+                $('.playing-bar .album-artwork').attr('src', 'https://s.mxmcdn.net/site/images/album-placeholder.png');
+
+                audioElement.setTrack(songData);
+                audioElement.play();
+
+                songData.plays = songData.plays + 1;
+                writeData(STORE_LOCALS, songData);
+            };
+        } else {
+            $.get('actions/ajax/get_song.php', {id: trackId}, function (song) {
+                if (song) {
+                    $('.playing-bar .track-name').text(song.title);
+                    $('.playing-bar .artist-name').text(song.artist).attr('href', 'artist.php?id=' + song.artist_id);
+                    $('.playing-bar .album-link').attr('href', 'album.php?id=' + song.album_id);
+                    $('.playing-bar .album-artwork').attr('src', song.artwork);
+
+                    song.played_at = new Date();
+                    audioElement.setTrack(song);
+                    if (playImmediately) {
+                        let recentSongs = readAllData(STORE_HISTORIES);
+                        recentSongs.onsuccess = function (event) {
+                            let allSongs = event.target.result;
+                            if (allSongs.length >= 20) {
+                                let lastSong = allSongs.pop();
+                                removeData(STORE_HISTORIES, lastSong.id);
+                            }
+                        };
+                        writeData(STORE_HISTORIES, song);
+                        playSong();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     $(document).on('click', '#play-all', function () {
@@ -325,4 +343,51 @@ $(function () {
         }
     });
 
+
+    // local file function
+    $(document).on('click', '#add-local-file', function () {
+        $('#local-input').click();
+    });
+
+    let trackTemplate = $('#track-list-template').html();
+    $(document).on('change', '#local-input', function (e) {
+        let trackLocal = $('.track-local');
+        let target = e.currentTarget;
+        let files = target.files;
+        console.log(files);
+        Array.from(files).forEach(function (song) {
+            if (!trackLocal.find('.track-list-item[data-id="' + song.name + '"]').length) {
+                let order = trackLocal.find('.track-list-item[data-id]').length + 1;
+                if (order === 1) {
+                    trackLocal.empty();
+                }
+                trackLocal.append(
+                    trackTemplate
+                        .replace(/{{order}}/g, order)
+                        .replace(/{{id}}/g, song.name)
+                        .replace(/{{album_id}}/g, 0)
+                        .replace(/{{title}}/g, song.name)
+                        .replace(/{{artist}}/g, '')
+                        .replace(/{{album}}/g, '')
+                        .replace(/{{duration}}/g, '')
+                        .replace(/{{plays}}/g, 0)
+                );
+
+                if (target.files) {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        writeData(STORE_LOCALS, {
+                            id: song.name,
+                            title: song.name,
+                            path: e.target.result,
+                            plays: 0
+                        });
+                    };
+                    reader.readAsDataURL(song);
+                }
+            }
+        });
+
+        $(this).prop("value", "");
+    });
 });

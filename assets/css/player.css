@@ -114,6 +114,10 @@
 .now-playing-bar .track-info .track-name {
     margin-top: 6px;
     display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
 }
 
 .now-playing-bar .track-info .artist-name {

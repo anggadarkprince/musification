@@ -39,6 +39,7 @@
         <?php endforeach; ?>
     </select>
     <div class="item" id="remove-playlist-song">Remove From Playlist</div>
+    <div class="item" id="remove-local-song">Remove From Local</div>
 </nav>
 
 <div class="modal" id="modal-playlist">
@@ -75,6 +76,32 @@
         </div>
     </div>
 </div>
+<script id="track-list-template" type="text/x-custom-template">
+    <li class="track-list-item" data-id="{{id}}" data-album="{{album_id}}">
+        <div class="icon-play">
+            <img src="assets/images/player/play-white.png" class="control" alt="Play">
+            <span>{{order}}</span>
+        </div>
+        <div class="track-info">
+            <p class="track-name">{{title}}</p>
+            <span class="artist-name">{{artist}}</span>
+        </div>
+        <div class="track-album">
+            <a href="album.php?id={{album_id}}" class="ajax-link">
+                {{album}}
+            </a>
+        </div>
+        <div class="track-option control">
+            <img src="assets/images/player/more.png" alt="More" class="option-button">
+        </div>
+        <div class="track-duration">
+            {{duration}}
+        </div>
+        <div class="track-played">
+            {{plays}}x plays
+        </div>
+    </li>
+</script>
 <script src="assets/js/db.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/player.js"></script>
